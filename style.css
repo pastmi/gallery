@@ -1,0 +1,28 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.years {
+  display: grid;
+  grid-template-columns: 2;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+}
+
+.years__item {
+  background: #fafafa;
+  border-radius: 3px;
+  border: 1px solid #f0f0f0;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #333;
+  transition: .2s background;
+  display: flex;
+  justify-content: center;
+}
+
+.years__item:hover {
+  background: #f0f0f0;
+}
