@@ -1,0 +1,30 @@
+{
+  "current_page": 2,
+  "count_of_pages": 10,
+  "list": [
+    {
+      "id": "1",
+      "name": "Войцех Бабски",
+      "image": "http://picsum.photos/80/120?1",
+      "count_of_pictures": 12
+    },
+    {
+      "id": "2",
+      "name": "Уоррен Чанг",
+      "image": "http://picsum.photos/80/120?2",
+      "count_of_pictures": 20
+    },
+    {
+      "id": "3",
+      "name": "Аурелио Бруни",
+      "image": "http://picsum.photos/80/120?3",
+      "count_of_pictures": 24
+    },
+    {
+      "id": "4",
+      "name": "Алкасандр Балос",
+      "image": "http://picsum.photos/80/120?4",
+      "count_of_pictures": 21
+    }
+  ]
+}

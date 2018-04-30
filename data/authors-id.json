@@ -1,0 +1,36 @@
+{
+  "author_id": "3",
+  "name": "Аурелио Бруни",
+  "image": "http://picsum.photos/80/120?3",
+  "description": "Аурелио Бруни — итальянский художник. Родился в городе Блера, 15 октября 1955 года. Получил диплом по специальности сценография в институте искусства в Сполето. Как художник он самоучка, так как самостоятельно «возводил дом знаний» на фундаменте, заложенном ещё в школе. Рисовать маслом начал в возрасте 19 лет. В настоящее время живёт и работает в Умбрии.<br>Ранняя живопись Бруни уходит своими корнями в сюрреализм, но со временем он начинает ориентироваться на близость лирического романтизма и символизма, усиливая это сочетание изысканной утонченностью и чистотой своих персонажей. Одушевленные и неодушевленные объекты приобретают равное достоинство и выглядят, почти, гиперреалистично, но, при этом, не скрываются за занавесом, а позволяют увидеть суть своей души. Многогранность и изысканность, чувственность и одиночество, задумчивость и плодотворность являются духом Аурелио Бруни, питаемым великолепием искусства и гармонией музыки.",
+  "list_of_pictures": [
+    {
+      "name": "Apostolo",
+      "image": "https://www.touchofart.eu/photos/Aurelio_Bruni/thumbnail_big/Apostolo_ab3.jpg"
+    },
+    {
+      "name": "Франческо riceve ле Stigmata",
+      "image": "https://www.touchofart.eu/photos/Aurelio_Bruni/thumbnail_big/Francesco_riceve_le_stigmate_ab13.jpg"
+    },
+    {
+      "name": "Франческо riceve ле Stigmata",
+      "image": "https://www.touchofart.eu/photos/Aurelio_Bruni/thumbnail_big/Francesco_riceve_le_stigmate_ab13.jpg"
+    },
+    {
+      "name": "Франческо riceve ле Stigmata",
+      "image": "https://www.touchofart.eu/photos/Aurelio_Bruni/thumbnail_big/Francesco_riceve_le_stigmate_ab13.jpg"
+    },
+    {
+      "name": "Apostolo",
+      "image": "https://www.touchofart.eu/photos/Aurelio_Bruni/thumbnail_big/Apostolo_ab3.jpg"
+    },
+    {
+      "name": "Франческо riceve ле Stigmata",
+      "image": "https://www.touchofart.eu/photos/Aurelio_Bruni/thumbnail_big/Francesco_riceve_le_stigmate_ab13.jpg"
+    },
+    {
+      "name": "Франческо riceve ле Stigmata",
+      "image": "https://www.touchofart.eu/photos/Aurelio_Bruni/thumbnail_big/Francesco_riceve_le_stigmate_ab13.jpg"
+    }
+  ]
+}
