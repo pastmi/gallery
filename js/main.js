@@ -3,35 +3,79 @@ import { api } from "./api";
 
 export default class Main {
   constructor() {
-    this.getYear = this.getYear.bind(this);
+    this.getInformation = this.getInformation.bind(this);
+    this.tabulationListener = this.tabulationListener.bind(this);
+    this.start();
   }
-  
-  getYears() {
+  start() {
+    this.addTabulation();
+  }
+
+  addTabulation() {
+    render.renderTabulation();
+    document
+      .querySelector(".tabulation-list")
+      .addEventListener("click", this.tabulationListener);
+       document
+         .querySelector(".tabulation-main")
+         .addEventListener("click", this.getInformation);
+  }
+
+  addListYear() {
     api
       .getYears()
       .then(data => data.json())
-      .then(years => render.renderYears(years))
-      .then(() => document.addEventListener("click", this.getYear));
+      .then(years => render.renderAboutTabulation(years));
   }
 
-  getExhibitions(page) {
+  addListAuthor() {
     api
-      .getExhibitions(page)
+      .getAuthors()
       .then(data => data.json())
-      .then(exhibitions => render.renderExhibitions(exhibitions.list));
+      .then(author => render.renderAboutTabulation(author));
   }
 
-  getYear(ev) {
+  addListExhibition() {
+    api
+      .getExhibition()
+      .then(data => data.json())
+      .then(exhibition => render.renderAboutTabulation(exhibition));
+  }
+  
+  tabulationListener(ev) {
+    let target = ev.target;
+    if (target.tagName !== "P") {
+      return;
+    }
+    this.changeActive(target, "tabulation-list");
+    switch (target.innerText) {
+      case "ГОДА":
+        this.addListYear();
+        break;
+      case "АВТОРЫ":
+        this.addListAuthor();
+        break;
+      case "ВЫСТАВКИ":
+        this.addListExhibition();
+        break;
+      default:
+        break;
+    }
+  }
+
+ 
+
+  getInformation(ev) {
     let target = ev.target;
     if (target.tagName !== "P") {
       return;
     }
     console.log(target.innerText);
-    this.changeActiveYear(target);
+    this.changeActive(target, "tabulation-main");
   }
 
-  changeActiveYear(target) {
-    let elements = document.querySelectorAll(".year p");
+  changeActive(target, classGroup) {
+    let elements = document.querySelectorAll("." + classGroup + " p");
     elements.forEach(item => item.classList.remove("year-active"));
     target.classList.add("year-active");
   }
