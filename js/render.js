@@ -1,14 +1,34 @@
 class Render {
   constructor() {
     this.root = document.getElementById("root");
+    
   }
 
   /**
    * Function for getting list of years
    * @param {Array} listOfYears
    */
-  renderYears(listOfYears) {
-    this.clearBlock(this.root);
+
+  renderTabulation() {
+    let compiled = _.template(`
+     <div class="tabulation">
+     <div class="tabulation-list">
+     <p>АВТОРЫ</p> 
+      <p>ВЫСТАВКИ</p> 
+       <p>ГОДА</p> 
+       </div>
+     <div class='tabulation-main'>
+     
+     </div>
+         
+           </div>
+    `);
+    this.root.innerHTML = compiled();
+  }
+
+  renderAboutTabulation(informatio) {
+    let tabList = document.querySelector(".tabulation-main");
+    this.clearBlock(tabList);
     let compiled = _.template(`
      <div class="year">     
          <% _.forEach(data, (item) => { %>
@@ -17,7 +37,7 @@ class Render {
            </div>
     `);
 
-    this.root.innerHTML = compiled({ data: listOfYears });
+    tabList.innerHTML = compiled({ data: informatio });
   }
 
   /**

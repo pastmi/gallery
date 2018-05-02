@@ -9,10 +9,12 @@ body {
   box-sizing: border-box;
    margin: 0;
 }
-.year{
+.year,
+.tabulation-list {
   display: flex;
 }
-.year p {
+.year p,
+.tabulation-list p {
  border: 1px solid black;
  border-radius: 2px;
   padding: 2px 9px;
