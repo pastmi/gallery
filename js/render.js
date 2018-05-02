@@ -9,17 +9,22 @@ class Render {
    */
   renderYears(listOfYears) {
     this.clearBlock(this.root);
-
     let compiled = _.template(`
+     <div id="accordion">
       <% _.forEach(data, (item) => { %>
-        <a href="/years/<%= item.year %>" class="years__item">
-          <b><%= item.year %></b>
-        </a>
+        <h3><%= item.year %></h3>
+      <div>
+        <p>
+        inf
+        </p>
+        <button>ПЕРЕЙТИ</button>
+      </div>
       <% }) %>
+      </div>
     `);
 
-    this.root.innerHTML =
-      '<div class="years">' + compiled({ data: listOfYears }) + "</div>";
+    this.root.innerHTML = compiled({ data: listOfYears });
+    $("#accordion").accordion({ collapsible: true });
   }
 
   /**
