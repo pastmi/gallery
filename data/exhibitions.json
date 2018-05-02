@@ -1,0 +1,66 @@
+{
+  "current_page": 1,
+  "count_of_pages": 10,
+  "list": [
+    {
+      "id": 1,
+      "name": "First",
+      "image": "https://picsum.photos/250/120?1",
+      "count_of_images": 23
+    },
+    {
+      "id": 2,
+      "name": "Second",
+      "image": "https://picsum.photos/40/40?2",
+      "count_of_images": 12
+    },
+    {
+      "id": 1,
+      "name": "First",
+      "image": "https://picsum.photos/250/120?1",
+      "count_of_images": 23
+    },
+    {
+      "id": 2,
+      "name": "Second",
+      "image": "https://picsum.photos/40/40?2",
+      "count_of_images": 12
+    },
+    {
+      "id": 2,
+      "name": "Second",
+      "image": "https://picsum.photos/40/40?2",
+      "count_of_images": 12
+    },
+    {
+      "id": 1,
+      "name": "First",
+      "image": "https://picsum.photos/250/120?1",
+      "count_of_images": 23
+    },
+    {
+      "id": 2,
+      "name": "Second",
+      "image": "https://picsum.photos/40/40?2",
+      "count_of_images": 12
+    },
+    {
+      "id": 2,
+      "name": "Second",
+      "image": "https://picsum.photos/40/40?2",
+      "count_of_images": 12
+    },
+    {
+      "id": 1,
+      "name": "First",
+      "image": "https://picsum.photos/250/120?1",
+      "count_of_images": 23
+    },
+    {
+      "id": 2,
+      "name": "Second",
+      "image": "https://picsum.photos/40/40?2",
+      "count_of_images": 12
+    }
+  ]
+}
