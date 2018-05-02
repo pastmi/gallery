@@ -7,17 +7,36 @@ class Render {
    * Function for getting list of years
    * @param {Array} listOfYears
    */
-  renderYears(listOfYears) {
-    this.clearBlock(this.root);
+
+  renderTabulation() {
+    let compiled = _.template(`
+     <div class="tabulation">
+     <div class="tabulation-list">
+     <p>АВТОРЫ</p> 
+      <p>ВЫСТАВКИ</p> 
+       <p>ГОДА</p> 
+       </div>
+     <div class='tabulation-main'>
+     
+     </div>
+         
+           </div>
+    `);
+    this.root.innerHTML = compiled();
+  }
+
+  renderAboutTabulation(informatio) {
+    let tabList = document.querySelector(".tabulation-main");
+    this.clearBlock(tabList);
     let compiled = _.template(`
      <div class="year">     
          <% _.forEach(data, (item) => { %>
-             <p><%= item.year %></p>
+             <p><%= item.name %></p>
         <% }) %>
            </div>
     `);
 
-    this.root.innerHTML = compiled({ data: listOfYears });
+    tabList.innerHTML = compiled({ data: informatio });
   }
 
   /**
@@ -35,7 +54,8 @@ class Render {
    * @param {Number} countOfPages
    */
   renderAuthors(listOfAuthors, currentPage, countOfPages) {
-    this.clearBlock(this.root);
+    let tabList = document.querySelector(".tabulation-main");
+    this.clearBlock(tabList);
 
     let compiled = _.template(`
       <div class="authors">
@@ -54,7 +74,7 @@ class Render {
       <%= currentPage %>
     `);
 
-    this.root.innerHTML = compiled({
+    tabList.innerHTML = compiled({
       listOfAuthors,
       currentPage,
       countOfPages
@@ -62,7 +82,8 @@ class Render {
   }
 
   renderByAuthor(listOfPictures, authorInfo) {
-    this.clearBlock(this.root);
+    let tabList = document.querySelector(".tabulation-main");
+    this.clearBlock(tabList);
 
     let compiled = _.template(`
       <h2><%= authorInfo.name %></h2>
@@ -82,7 +103,7 @@ class Render {
       </a>
     `);
 
-    this.root.innerHTML = compiled({ listOfPictures, authorInfo });
+    tabList.innerHTML = compiled({ listOfPictures, authorInfo });
   }
 
   /**
@@ -92,7 +113,8 @@ class Render {
    * @param {Number} counfOfPages
    */
   renderExhibitions(listOfExhibitions, currentPage, countOfPages) {
-    this.clearBlock(root);
+    let tabList = document.querySelector(".tabulation-main");
+    this.clearBlock(tabList);
 
     let compiled = _.template(`
       <div class="exhibitions">
@@ -111,7 +133,7 @@ class Render {
       ${ this._getPaginationTemplate(currentPage, countOfPages) }
     `);
 
-    this.root.innerHTML = compiled({ data: listOfExhibitions });
+    tabList.innerHTML = compiled({ data: listOfExhibitions });
   }
 
   _getPaginationTemplate(currentPage, countOfPages) {
