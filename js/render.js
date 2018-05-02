@@ -89,4 +89,4 @@ class Render {
   }
 }
 
-let render = new Render();
+export let render = new Render();

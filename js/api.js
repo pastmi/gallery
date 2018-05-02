@@ -1,10 +1,10 @@
 class Api {
   getYears() {
-    return fetch("/data/years.json");
+    return fetch("../data/years.json");
   }
 
   getAuthors() {
-    return fetch("/data/authors.json");
+    return fetch("../data/authors.json");
   }
 
   /**
@@ -12,8 +12,8 @@ class Api {
    * @param {Number} id Id of author
    */
   getPicturesByAuthor(id) {
-    return fetch("/data/authors-id.json");
+    return fetch("../data/authors-id.json");
   }
 }
 
-let api = new Api();
+export let api = new Api();
