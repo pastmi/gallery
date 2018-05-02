@@ -10,17 +10,11 @@ class Render {
   renderYears(listOfYears) {
     this.clearBlock(this.root);
     let compiled = _.template(`
-     <div id="accordion">
-      <% _.forEach(data, (item) => { %>
-        <h3><%= item.year %></h3>
-      <div>
-        <p>
-        inf
-        </p>
-        <button>ПЕРЕЙТИ</button>
-      </div>
-      <% }) %>
-      </div>
+     <div class="year">     
+         <% _.forEach(data, (item) => { %>
+             <p><%= item.year %></p>
+        <% }) %>
+           </div>
     `);
 
     this.root.innerHTML = compiled({ data: listOfYears });

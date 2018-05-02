@@ -1,29 +1,38 @@
 [
   {
-    "year": 1988
+    "year": 1988,
+    "information":"первый"
   },
   {
-    "year": 1987
+    "year": 1987,
+    "information":"второй"
   },
   {
-    "year": 1986
+    "year": 1986,
+    "information":"тертий"
   },
   {
-    "year": 1985
+    "year": 1985,
+    "information":"четвертый"
   },
   {
-    "year": 1984
+    "year": 1984,
+    "information":"пятый"
   },
   {
-    "year": 1983
+    "year": 1983,
+    "information":"шестой"
   },
   {
-    "year": 1982
+    "year": 1982,
+    "information":"седьмой"
   },
   {
-    "year": 1981
+    "year": 1981,
+    "information":"восьмой"
   },
   {
-    "year": 1980
+    "year": 1980,
+    "information":"девятый"
   }
 ]
