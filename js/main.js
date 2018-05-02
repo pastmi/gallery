@@ -41,27 +41,7 @@ export default class Main {
       .then(data => data.json())
       .then(exhibition => render.renderAboutTabulation(exhibition));
   }
-  // api
-  //   .getAuthors()
-  //   .then(data => data.json())
-  //   .then(authors =>
-  //     render.renderAuthors(
-  //       authors.list,
-  //       authors.current_page,
-  //       authors.count_of_pages
-  //     )
-  //   );
-
-  // api
-  //   .getPicturesByAuthor(3)
-  //   .then(data => data.json())
-  //   .then(authorInfo =>
-  //     render.renderByAuthor(authorInfo.list_of_pictures, {
-  //       name: authorInfo.name,
-  //       image: authorInfo.image,
-  //       description: authorInfo.description
-  //     })
-  //   );
+  
   tabulationListener(ev) {
     let target = ev.target;
     if (target.tagName !== "P") {
@@ -83,13 +63,7 @@ export default class Main {
     }
   }
 
-  wait(what, call) {
-    if (what.length === 0) {
-      setTimeout(() => call(), 100);
-      return false;
-    }
-    return true;
-  }
+ 
 
   getInformation(ev) {
     let target = ev.target;
@@ -104,5 +78,31 @@ export default class Main {
     let elements = document.querySelectorAll("." + classGroup + " p");
     elements.forEach(item => item.classList.remove("year-active"));
     target.classList.add("year-active");
+  }
+
+  getPicturesByAuthor(id) {
+    api
+      .getPicturesByAuthor(id)
+      .then(data => data.json())
+      .then(authorInfo =>
+        render.renderByAuthor(authorInfo.list_of_pictures, {
+          name: authorInfo.name,
+          image: authorInfo.image,
+          description: authorInfo.description
+        })
+      );
+  }
+
+  getAuthors() {
+    api
+      .getAuthors()
+      .then(data => data.json())
+      .then(authors =>
+        render.renderAuthors(
+          authors.list,
+          authors.current_page,
+          authors.count_of_pages
+        )
+      );
   }
 }

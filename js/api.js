@@ -14,6 +14,14 @@ class Api {
   getPicturesByAuthor(id) {
     return fetch("../data/authors-id.json");
   }
+
+  /**
+   *
+   * @param {Number} page Number of page with the Exhibitions
+   */
+  getExhibitions(page) {
+    return fetch("../data/exhibitions.json");
+  }
 }
 
 export let api = new Api();
