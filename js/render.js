@@ -88,8 +88,10 @@ class Render {
   /**
    *
    * @param {Array} listOfExhibitions
+   * @param {Number} currentPage
+   * @param {Number} counfOfPages
    */
-  renderExhibitions(listOfExhibitions) {
+  renderExhibitions(listOfExhibitions, currentPage, countOfPages) {
     this.clearBlock(root);
 
     let compiled = _.template(`
@@ -106,9 +108,26 @@ class Render {
           </div>
         <% }) %>
       </div>
+      ${ this._getPaginationTemplate(currentPage, countOfPages) }
     `);
 
     this.root.innerHTML = compiled({ data: listOfExhibitions });
+  }
+
+  _getPaginationTemplate(currentPage, countOfPages) {
+    return _.template(`
+      <div class="pagination">
+        <button id="paginationPrevButton">Предыдущая</button>
+        <% _.forEach(_.range(0, countOfPages), (index) => { %>
+          <% if(index + 1 === currentPage) { %>
+            <span><%= index + 1 %></span>
+          <% } else { %>
+            <button data-page="<%= index + 1 %>" class="pagination__page"><%= index + 1 %></button>
+          <% } %>
+        <% }) %>
+        <button id="paginationNextButton">Следующая</button>
+      </div>
+    `)({ countOfPages, currentPage });    
   }
 }
 

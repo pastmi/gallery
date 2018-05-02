@@ -5,7 +5,7 @@ export default class Main {
   constructor() {
     this.getYear = this.getYear.bind(this);
   }
-  
+
   getYears() {
     api
       .getYears()
@@ -15,10 +15,57 @@ export default class Main {
   }
 
   getExhibitions(page) {
+    let countOfPages;
+
     api
       .getExhibitions(page)
       .then(data => data.json())
-      .then(exhibitions => render.renderExhibitions(exhibitions.list));
+      .then(exhibitions => {
+        render.renderExhibitions(
+          exhibitions.list,
+          page,
+          exhibitions.count_of_pages
+        );
+
+        countOfPages = exhibitions.count_of_pages;
+      })
+      .then(() => {
+        document
+          .getElementById("paginationNextButton")
+          .addEventListener(
+            "click",
+            this._nextExhibition.bind(this, page, countOfPages)
+          );
+
+        document
+          .getElementById("paginationPrevButton")
+          .addEventListener(
+            "click",
+            this._prevExhibition.bind(this, page, countOfPages)
+          );
+
+        let pages = document.getElementsByClassName("pagination__page");
+        for (let i = 0; i < 9; i++) {
+          pages[i].addEventListener(
+            "click",
+            this.getExhibitions.bind(this, +pages[i].dataset.page)
+          );
+        }
+      });
+  }
+
+  _nextExhibition(page, countOfPages) {
+    if (page !== countOfPages) {
+      page++;
+      this.getExhibitions(page);
+    }
+  }
+
+  _prevExhibition(page, countOfPages) {
+    if (page !== 1) {
+      page--;
+      this.getExhibitions(page);
+    }
   }
 
   getYear(ev) {
