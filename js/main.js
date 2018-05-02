@@ -47,6 +47,12 @@ export default class Main {
     if (target.tagName !== "P") {
       return;
     }
+    if (target.classList.contains("year-active")) {
+      target.classList.remove("year-active");
+      render.clearBlock(document.querySelector(".tabulation-main"));
+      return;
+    }
+    
     this.changeActive(target, "tabulation-list");
     switch (target.innerText) {
       case "ГОДА":
