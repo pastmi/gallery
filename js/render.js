@@ -32,7 +32,7 @@ class Render {
     let compiled = _.template(`
      <div class="year">     
          <% _.forEach(data, (item) => { %>
-             <p><%= item.year %></p>
+             <p><%= item.name %></p>
         <% }) %>
            </div>
     `);
