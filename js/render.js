@@ -1,7 +1,6 @@
 class Render {
   constructor() {
     this.root = document.getElementById("root");
-    
   }
 
   /**
@@ -55,7 +54,8 @@ class Render {
    * @param {Number} countOfPages
    */
   renderAuthors(listOfAuthors, currentPage, countOfPages) {
-    this.clearBlock(this.root);
+    let tabList = document.querySelector(".tabulation-main");
+    this.clearBlock(tabList);
 
     let compiled = _.template(`
       <div class="authors">
@@ -74,7 +74,7 @@ class Render {
       <%= currentPage %>
     `);
 
-    this.root.innerHTML = compiled({
+    tabList.innerHTML = compiled({
       listOfAuthors,
       currentPage,
       countOfPages
@@ -82,7 +82,8 @@ class Render {
   }
 
   renderByAuthor(listOfPictures, authorInfo) {
-    this.clearBlock(this.root);
+    let tabList = document.querySelector(".tabulation-main");
+    this.clearBlock(tabList);
 
     let compiled = _.template(`
       <h2><%= authorInfo.name %></h2>
@@ -102,15 +103,18 @@ class Render {
       </a>
     `);
 
-    this.root.innerHTML = compiled({ listOfPictures, authorInfo });
+    tabList.innerHTML = compiled({ listOfPictures, authorInfo });
   }
 
   /**
    *
    * @param {Array} listOfExhibitions
+   * @param {Number} currentPage
+   * @param {Number} counfOfPages
    */
-  renderExhibitions(listOfExhibitions) {
-    this.clearBlock(root);
+  renderExhibitions(listOfExhibitions, currentPage, countOfPages) {
+    let tabList = document.querySelector(".tabulation-main");
+    this.clearBlock(tabList);
 
     let compiled = _.template(`
       <div class="exhibitions">
@@ -126,9 +130,26 @@ class Render {
           </div>
         <% }) %>
       </div>
+      ${ this._getPaginationTemplate(currentPage, countOfPages) }
     `);
 
-    this.root.innerHTML = compiled({ data: listOfExhibitions });
+    tabList.innerHTML = compiled({ data: listOfExhibitions });
+  }
+
+  _getPaginationTemplate(currentPage, countOfPages) {
+    return _.template(`
+      <div class="pagination">
+        <button id="paginationPrevButton">Предыдущая</button>
+        <% _.forEach(_.range(0, countOfPages), (index) => { %>
+          <% if(index + 1 === currentPage) { %>
+            <span><%= index + 1 %></span>
+          <% } else { %>
+            <button data-page="<%= index + 1 %>" class="pagination__page"><%= index + 1 %></button>
+          <% } %>
+        <% }) %>
+        <button id="paginationNextButton">Следующая</button>
+      </div>
+    `)({ countOfPages, currentPage });    
   }
 }
 
