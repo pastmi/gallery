@@ -7,15 +7,17 @@ body {
 /* Вохможно придётся убрать */
 * {
   box-sizing: border-box;
+   margin: 0;
 }
 .year{
   display: flex;
 }
-.list-year {
-  flex: 2;
-}
-.inf-year {
-  flex: 10;
+.year p {
+ border: 1px solid black;
+ border-radius: 2px;
+  padding: 2px 9px;
+  margin-right: 10px;
+  cursor:  pointer;
 }
 .authors {
   display: grid;
