@@ -32,14 +32,14 @@ export default class Main {
     api
       .getAuthors()
       .then(data => data.json())
-      .then(author => render.renderAboutTabulation(author));
+      .then(author => render.renderAboutTabulation(author.list));
   }
 
   addListExhibition() {
     api
-      .getExhibition()
+      .getExhibitions()
       .then(data => data.json())
-      .then(exhibition => render.renderAboutTabulation(exhibition));
+      .then(exhibition => render.renderAboutTabulation(exhibition.list));
   }
   
   tabulationListener(ev) {
