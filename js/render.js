@@ -81,9 +81,34 @@ class Render {
         <% }) %>
       </a>
     `);
-    // <%= item.name %>
 
     this.root.innerHTML = compiled({ listOfPictures, authorInfo });
+  }
+
+  /**
+   *
+   * @param {Array} listOfExhibitions
+   */
+  renderExhibitions(listOfExhibitions) {
+    this.clearBlock(root);
+
+    let compiled = _.template(`
+      <div class="exhibitions">
+        <% _.forEach(data, (item) => { %>
+          <div class="exhibitions__item">
+            <div class="exhibitions__image">
+              <img src="<%= item.image %>" alt="">
+            </div>
+            <div class="exhibitions__info">
+              <div class="exhibitions__title"><%= item.name %></div>
+              <div class="exhibitions__count-of-pictures"><%= item.count_of_images %> картины</div>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    `);
+
+    this.root.innerHTML = compiled({ data: listOfExhibitions });
   }
 }
 
