@@ -36,9 +36,16 @@ export default class Main {
   }
   getYear(ev) {
     let target = ev.target;
-    if(target.tagName!=='P') {
+    if (target.tagName !== "P") {
       return;
     }
-    console.log(target.innerText)
+    console.log(target.innerText);
+    this.changeActiveYear(target);
+  }
+
+  changeActiveYear(target) {
+    let elements = document.querySelectorAll(".year p");
+    elements.forEach(item => item.classList.remove("year-active"));
+    target.classList.add("year-active");
   }
 }
