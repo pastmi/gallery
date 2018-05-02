@@ -18,7 +18,6 @@ class Render {
     `);
 
     this.root.innerHTML = compiled({ data: listOfYears });
-    $("#accordion").accordion({ collapsible: true });
   }
 
   /**
