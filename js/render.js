@@ -11,29 +11,28 @@ class Render {
   renderTabulation() {
     let compiled = _.template(`
      <div class="tabulation">
-     <div class="tabulation-list">
-     <p>АВТОРЫ</p> 
-      <p>ВЫСТАВКИ</p> 
-       <p>ГОДА</p> 
-       </div>
-     <div class='tabulation-main'>
-     
-     </div>
-         
-           </div>
+      <div id="js-tabulation__buttons" class="tabulation__list">
+        <button data-section="exhibitions" class="tabulation__button tabulation__button_active">Выставки</button> 
+        <button data-section="authors" class="tabulation__button">Авторы</button> 
+        <button data-section="years" class="tabulation__button">Выставки по годам</button> 
+      </div>
+      <div id='tabulation__main'>
+      
+      </div>
+    </div>
     `);
     this.root.innerHTML = compiled();
   }
 
   renderAboutTabulation(informatio) {
-    let tabList = document.querySelector(".tabulation-main");
+    let tabList = document.querySelector("#tabulation__main");
     this.clearBlock(tabList);
     let compiled = _.template(`
-     <div class="year">     
-         <% _.forEach(data, (item) => { %>
-             <p><%= item.name %></p>
+      <div class="year">     
+        <% _.forEach(data, (item) => { %>
+          <p><%= item.name %></p>
         <% }) %>
-           </div>
+      </div>
     `);
 
     tabList.innerHTML = compiled({ data: informatio });
@@ -54,24 +53,30 @@ class Render {
    * @param {Number} countOfPages
    */
   renderAuthors(listOfAuthors, currentPage, countOfPages) {
-    let tabList = document.querySelector(".tabulation-main");
+    let tabList = document.querySelector("#tabulation__main");
     this.clearBlock(tabList);
 
     let compiled = _.template(`
       <div class="authors">
         <% _.forEach(listOfAuthors, (item) => { %>
-          <a href="#" class="authors__item">
-            <div class="authors__image">
-              <img src="<%= item.image %>" alt="">
-            </div>
-            <div class="authors__info">
-              <div class="authors__name"><%= item.name %></div>
-              <div class="authors__count-of-pictures"><%= item.count_of_pictures %> картин</div>
+          <a href="#" class="authors__square">
+            <div class="authors__square-content">
+              <div class="authors__image">
+                <img src="<%= item.image %>" alt="">
+              </div>
+              <div class="authors__info">
+                <div class="authors__name"><%= item.name %></div>
+                <div class="authors__count-of-pictures"><%= item.count_of_pictures %> картин</div>
+              </div>
             </div>
           </a>
         <% }) %>
       </div>
-      <%= currentPage %>
+      ${
+        countOfPages > 1
+          ? this._getPaginationTemplate(currentPage, countOfPages)
+          : ""
+      }
     `);
 
     tabList.innerHTML = compiled({
@@ -82,7 +87,7 @@ class Render {
   }
 
   renderByAuthor(listOfPictures, authorInfo) {
-    let tabList = document.querySelector(".tabulation-main");
+    let tabList = document.querySelector("#tabulation__main");
     this.clearBlock(tabList);
 
     let compiled = _.template(`
@@ -113,43 +118,107 @@ class Render {
    * @param {Number} counfOfPages
    */
   renderExhibitions(listOfExhibitions, currentPage, countOfPages) {
-    let tabList = document.querySelector(".tabulation-main");
+    let tabList = document.querySelector("#tabulation__main");
     this.clearBlock(tabList);
 
     let compiled = _.template(`
       <div class="exhibitions">
         <% _.forEach(data, (item) => { %>
-          <div class="exhibitions__item">
-            <div class="exhibitions__image">
-              <img src="<%= item.image %>" alt="">
-            </div>
-            <div class="exhibitions__info">
-              <div class="exhibitions__title"><%= item.name %></div>
-              <div class="exhibitions__count-of-pictures"><%= item.count_of_images %> картины</div>
+          <div class="exhibitions__square">
+            <div class="exhibitions__square-content">
+              <div class="exhibitions__image">
+                <img src="<%= item.image %>" alt="">
+              </div>
+              <div class="exhibitions__info">
+                <div class="exhibitions__title"><%= item.name %></div>
+                <div class="exhibitions__count-of-pictures"><%= item.count_of_images %> картины</div>
+              </div>
             </div>
           </div>
         <% }) %>
       </div>
-      ${ this._getPaginationTemplate(currentPage, countOfPages) }
+      ${
+        countOfPages > 1
+          ? this._getPaginationTemplate(currentPage, countOfPages)
+          : ""
+      }
     `);
 
     tabList.innerHTML = compiled({ data: listOfExhibitions });
   }
 
   _getPaginationTemplate(currentPage, countOfPages) {
+    if (countOfPages < 6) {
+      return this._getPaginationWithoutEllipsis(currentPage, countOfPages);
+    }
+
+    if (currentPage > 2 && currentPage < countOfPages - 1) {
+      return this._getPaginationWithTwoEllipsis(currentPage, countOfPages);
+    } else if (currentPage <= 2 || currentPage >= countOfPages - 1) {
+      return this._getPaginationWithOneEllipsis(currentPage, countOfPages);
+    }
+
+    return;
+  }
+
+  _getPaginationWithOneEllipsis(currentPage, countOfPages) {
     return _.template(`
       <div class="pagination">
-        <button id="paginationPrevButton">Предыдущая</button>
-        <% _.forEach(_.range(0, countOfPages), (index) => { %>
+        <button class="pagination__button pagination__button_arrow" id="paginationPrevButton">Предыдущая</button>
+        <% _.forEach(_.range(0, 3), (index) => { %>
           <% if(index + 1 === currentPage) { %>
-            <span><%= index + 1 %></span>
+            <button class="pagination__button pagination__button_number pagination__button_active"><%= index + 1 %></button>
           <% } else { %>
-            <button data-page="<%= index + 1 %>" class="pagination__page"><%= index + 1 %></button>
+            <button data-page="<%= index + 1 %>" class="pagination__button pagination__button_number pagination__page"><%= index + 1 %></button>
           <% } %>
         <% }) %>
-        <button id="paginationNextButton">Следующая</button>
+        <span class="pagination__ellipsis">...</span>
+        <% _.forEach(_.range(countOfPages - 3, countOfPages), (index) => { %>
+          <% if(index + 1 === currentPage) { %>
+            <button class="pagination__button pagination__button_number pagination__button_active"><%= index + 1 %></button>
+          <% } else { %>
+            <button data-page="<%= index + 1 %>" class="pagination__button pagination__button_number pagination__page"><%= index + 1 %></button>
+          <% } %>
+        <% }) %>
+        <button class="pagination__button pagination__button_arrow" id="paginationNextButton">Следующая</button>
       </div>
-    `)({ countOfPages, currentPage });    
+    `)({ countOfPages, currentPage });
+  }
+
+  _getPaginationWithTwoEllipsis(currentPage, countOfPages) {
+    return _.template(`
+      <div class="pagination">
+        <button class="pagination__button pagination__button_arrow" id="paginationPrevButton">Предыдущая</button>
+        <button data-page="1" class="pagination__button pagination__button_number pagination__page">1</button>
+        <span class="pagination__ellipsis">...</span>
+        <% _.forEach(_.range(currentPage-2, currentPage+1), (index) => { %>
+          <% if(index + 1 === currentPage) { %>
+            <button class="pagination__button pagination__button_number pagination__button_active"><%= index + 1 %></button>
+          <% } else { %>
+            <button data-page="<%= index + 1 %>" class="pagination__button pagination__button_number pagination__page"><%= index + 1 %></button>
+          <% } %>
+        <% }) %>
+        <span class="pagination__ellipsis">...</span>
+        <button data-page="<%= countOfPages %>" class="pagination__button pagination__button_number pagination__page"><%= countOfPages %></button>
+        <button class="pagination__button pagination__button_arrow" id="paginationNextButton">Следующая</button>
+      </div>
+    `)({ countOfPages, currentPage });
+  }
+
+  _getPaginationWithoutEllipsis(currentPage, countOfPages) {
+    return _.template(`
+      <div class="pagination">
+        <button class="pagination__button pagination__button_arrow" id="paginationPrevButton">Предыдущая</button>
+        <% _.forEach(_.range(0, countOfPages), (index) => { %>
+          <% if(index + 1 === currentPage) { %>
+            <button class="pagination__button pagination__button_number pagination__button_active"><%= index + 1 %></button>
+          <% } else { %>
+            <button data-page="<%= index + 1 %>" class="pagination__button pagination__button_number pagination__page"><%= index + 1 %></button>
+          <% } %>
+        <% }) %>
+        <button class="pagination__button pagination__button_arrow" id="paginationNextButton">Следующая</button>
+      </div>
+    `)({ countOfPages, currentPage });
   }
 }
 
