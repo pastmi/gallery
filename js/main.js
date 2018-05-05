@@ -13,12 +13,13 @@ export default class Main {
 
   addTabulation() {
     render.renderTabulation();
+    this.getExhibitions(1);
     document
-      .querySelector(".tabulation-list")
+      .querySelector("#js-tabulation__buttons")
       .addEventListener("click", this.tabulationListener);
-       document
-         .querySelector(".tabulation-main")
-         .addEventListener("click", this.getInformation);
+    document
+      .querySelector("#tabulation__main")
+      .addEventListener("click", this.getInformation);
   }
 
   getYears() {
@@ -58,7 +59,7 @@ export default class Main {
           );
 
         let pages = document.getElementsByClassName("pagination__page");
-        for (let i = 0; i < 9; i++) {
+        for (let i = 0; i < pages.length; i++) {
           pages[i].addEventListener(
             "click",
             this.getExhibitions.bind(this, +pages[i].dataset.page)
@@ -80,27 +81,27 @@ export default class Main {
       this.getExhibitions(page);
     }
   }
-  
+
   tabulationListener(ev) {
     let target = ev.target;
-    if (target.tagName !== "P") {
+
+    if (
+      target.tagName !== "BUTTON" ||
+      target.classList.contains("tabulation__button_active")
+    ) {
       return;
     }
-    if (target.classList.contains("year-active")) {
-      target.classList.remove("year-active");
-      render.clearBlock(document.querySelector(".tabulation-main"));
-      return;
-    }
-    
-    this.changeActive(target, "tabulation-list");
-    switch (target.innerText) {
-      case "ГОДА":
+
+    this.changeActive(target, "js-tabulation__buttons");
+
+    switch (target.dataset.section) {
+      case "years":
         this.getYears();
         break;
-      case "АВТОРЫ":
+      case "authors":
         this.getAuthors();
         break;
-      case "ВЫСТАВКИ":
+      case "exhibitions":
         this.getExhibitions(1);
         break;
       default:
@@ -108,21 +109,21 @@ export default class Main {
     }
   }
 
- 
-
   getInformation(ev) {
     let target = ev.target;
     if (target.tagName !== "P") {
       return;
     }
     console.log(target.innerText);
-    this.changeActive(target, "tabulation-main");
+    this.changeActive(target, "tabulation__main");
   }
 
-  changeActive(target, classGroup) {
-    let elements = document.querySelectorAll("." + classGroup + " p");
-    elements.forEach(item => item.classList.remove("year-active"));
-    target.classList.add("year-active");
+  changeActive(target, idGroup) {
+    let elements = document.querySelectorAll("#" + idGroup + " button");
+    elements.forEach(item =>
+      item.classList.remove("tabulation__button_active")
+    );
+    target.classList.add("tabulation__button_active");
   }
 
   getPicturesByAuthor(id) {

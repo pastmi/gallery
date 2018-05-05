@@ -2,29 +2,58 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  margin: 0 auto;
+  width: 1140px;
+  font-family: 'Roboto', sans-serif;
 }
 
 /* Вохможно придётся убрать */
 * {
   box-sizing: border-box;
-   margin: 0;
+  margin: 0;
 }
-.year,
-.tabulation-list {
+
+.tabulation {
   display: flex;
+  flex-direction: column;
 }
-.year p,
-.tabulation-list p {
- border: 1px solid black;
- border-radius: 2px;
-  padding: 2px 9px;
-  margin-right: 10px;
-  cursor:  pointer;
+
+.tabulation__list {
+  display: flex;
+  margin: 20px 0;
 }
-.year-active{
-  background: black;
-  color: white;
+
+.tabulation__button {
+  all: unset;
+  display: flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 16px;
+  margin: 0 6px;
+  border-radius: 36px;
+  border: 1px solid;
+  border-color: #ccc;
+  color: rgb(102, 102, 102);
+  transition: .2s background;
 }
+
+.tabulation__button:hover {
+  background-color: #fafafa;
+  cursor: pointer;
+}
+
+.tabulation__button:focus {
+  border-color: #000;
+}
+
+.tabulation__button_active,
+.tabulation__button_active:hover {
+  background-color: #000;
+  color: #fff;
+  border-color: #000;
+  cursor: default;
+}
+
 .authors {
   display: grid;
   grid-gap: 20px;
@@ -166,4 +195,46 @@ body {
 .exhibitions__count-of-pictures {
   opacity: 0.8;
   margin-top: 5px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.pagination__button {
+  all: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  margin: 0 6px;
+  border: 1px solid #000;
+  border-radius: 36px;
+  cursor: pointer;
+}
+
+.pagination__button_number {
+  width: 36px;
+}
+
+.pagination__button_arrow {
+  padding: 0 16px;
+}
+
+.pagination__button_active {
+  background-color: #000;
+  color: #fff;
+  cursor: default;
+}
+
+.pagination__ellipsis {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 6px;
+  width: 36px;
+  height: 36px;
+  color: #666;
 }
