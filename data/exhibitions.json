@@ -3,27 +3,27 @@
   "list": [
     {
       "id": 1,
-      "name": "First",
+      "name": "Валерий Ивашкевич",
       "image": "https://picsum.photos/250/120?1",
-      "count_of_images": 23
+      "count_of_images": 22
     },
     {
       "id": 2,
-      "name": "Second",
+      "name": "Вячеслав Рындевич И Какой-то Мужик",
       "image": "https://picsum.photos/40/40?2",
-      "count_of_images": 12
+      "count_of_images": 5
     },
     {
       "id": 1,
-      "name": "First",
+      "name": "Ирина Васильева",
       "image": "https://picsum.photos/250/120?1",
-      "count_of_images": 23
+      "count_of_images": 35
     },
     {
       "id": 2,
-      "name": "Second",
+      "name": "Михаил Левкович",
       "image": "https://picsum.photos/40/40?2",
-      "count_of_images": 12
+      "count_of_images": 14
     },
     {
       "id": 2,

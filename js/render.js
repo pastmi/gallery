@@ -118,13 +118,15 @@ class Render {
     let compiled = _.template(`
       <div class="exhibitions">
         <% _.forEach(data, (item) => { %>
-          <div class="exhibitions__item">
-            <div class="exhibitions__image">
-              <img src="<%= item.image %>" alt="">
-            </div>
-            <div class="exhibitions__info">
-              <div class="exhibitions__title"><%= item.name %></div>
-              <div class="exhibitions__count-of-pictures"><%= item.count_of_images %> картины</div>
+          <div class="exhibitions__square">
+            <div class="exhibitions__square-content">
+              <div class="exhibitions__image">
+                <img src="<%= item.image %>" alt="">
+              </div>
+              <div class="exhibitions__info">
+                <div class="exhibitions__title"><%= item.name %></div>
+                <div class="exhibitions__count-of-pictures"><%= item.count_of_images %> картины</div>
+              </div>
             </div>
           </div>
         <% }) %>
