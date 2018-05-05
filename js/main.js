@@ -44,26 +44,28 @@ export default class Main {
         countOfPages = exhibitions.count_of_pages;
       })
       .then(() => {
-        document
-          .getElementById("paginationNextButton")
-          .addEventListener(
-            "click",
-            this._nextExhibition.bind(this, page, countOfPages)
-          );
+        if (countOfPages > 1) {
+          document
+            .getElementById("paginationNextButton")
+            .addEventListener(
+              "click",
+              this._nextExhibition.bind(this, page, countOfPages)
+            );
 
-        document
-          .getElementById("paginationPrevButton")
-          .addEventListener(
-            "click",
-            this._prevExhibition.bind(this, page, countOfPages)
-          );
+          document
+            .getElementById("paginationPrevButton")
+            .addEventListener(
+              "click",
+              this._prevExhibition.bind(this, page, countOfPages)
+            );
 
-        let pages = document.getElementsByClassName("pagination__page");
-        for (let i = 0; i < pages.length; i++) {
-          pages[i].addEventListener(
-            "click",
-            this.getExhibitions.bind(this, +pages[i].dataset.page)
-          );
+          let pages = document.getElementsByClassName("pagination__page");
+          for (let i = 0; i < pages.length; i++) {
+            pages[i].addEventListener(
+              "click",
+              this.getExhibitions.bind(this, +pages[i].dataset.page)
+            );
+          }
         }
       });
   }
@@ -99,7 +101,7 @@ export default class Main {
         this.getYears();
         break;
       case "authors":
-        this.getAuthors();
+        this.getAuthors(1);
         break;
       case "exhibitions":
         this.getExhibitions(1);
@@ -139,16 +141,54 @@ export default class Main {
       );
   }
 
-  getAuthors() {
+  getAuthors(page) {
+    let countOfPages;
     api
       .getAuthors()
       .then(data => data.json())
-      .then(authors =>
-        render.renderAuthors(
-          authors.list,
-          authors.current_page,
-          authors.count_of_pages
-        )
-      );
+      .then(authors => {
+        render.renderAuthors(authors.list, page, authors.count_of_pages);
+
+        countOfPages = authors.count_of_pages;
+      })
+      .then(() => {
+        if (countOfPages > 1) {
+          document
+            .getElementById("paginationNextButton")
+            .addEventListener(
+              "click",
+              this._nextAuthors.bind(this, page, countOfPages)
+            );
+
+          document
+            .getElementById("paginationPrevButton")
+            .addEventListener(
+              "click",
+              this._prevAuthors.bind(this, page, countOfPages)
+            );
+
+          let pages = document.getElementsByClassName("pagination__page");
+          for (let i = 0; i < pages.length; i++) {
+            pages[i].addEventListener(
+              "click",
+              this.getAuthors.bind(this, +pages[i].dataset.page)
+            );
+          }
+        }
+      });
+  }
+
+  _nextAuthors(page, countOfPages) {
+    if (page !== countOfPages) {
+      page++;
+      this.getAuthors(page);
+    }
+  }
+
+  _prevAuthors(page, countOfPages) {
+    if (page !== 1) {
+      page--;
+      this.getAuthors(page);
+    }
   }
 }

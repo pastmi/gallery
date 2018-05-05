@@ -59,18 +59,24 @@ class Render {
     let compiled = _.template(`
       <div class="authors">
         <% _.forEach(listOfAuthors, (item) => { %>
-          <a href="#" class="authors__item">
-            <div class="authors__image">
-              <img src="<%= item.image %>" alt="">
-            </div>
-            <div class="authors__info">
-              <div class="authors__name"><%= item.name %></div>
-              <div class="authors__count-of-pictures"><%= item.count_of_pictures %> картин</div>
+          <a href="#" class="authors__square">
+            <div class="authors__square-content">
+              <div class="authors__image">
+                <img src="<%= item.image %>" alt="">
+              </div>
+              <div class="authors__info">
+                <div class="authors__name"><%= item.name %></div>
+                <div class="authors__count-of-pictures"><%= item.count_of_pictures %> картин</div>
+              </div>
             </div>
           </a>
         <% }) %>
       </div>
-      <%= currentPage %>
+      ${
+        countOfPages > 1
+          ? this._getPaginationTemplate(currentPage, countOfPages)
+          : ""
+      }
     `);
 
     tabList.innerHTML = compiled({
@@ -131,7 +137,11 @@ class Render {
           </div>
         <% }) %>
       </div>
-      ${this._getPaginationTemplate(currentPage, countOfPages)}
+      ${
+        countOfPages > 1
+          ? this._getPaginationTemplate(currentPage, countOfPages)
+          : ""
+      }
     `);
 
     tabList.innerHTML = compiled({ data: listOfExhibitions });
