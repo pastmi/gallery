@@ -169,17 +169,17 @@ class Render {
         <button class="pagination__button pagination__button_arrow" id="paginationPrevButton">Предыдущая</button>
         <% _.forEach(_.range(0, 3), (index) => { %>
           <% if(index + 1 === currentPage) { %>
-            <button class="pagination__button pagination__button_number pagination__button_active"><%= index + 1 %></button>
+            <button href='#exhibitions=<%= index + 1 %>' class="pagination__button pagination__button_number pagination__button_active"><%= index + 1 %></button>
           <% } else { %>
-            <button data-page="<%= index + 1 %>" class="pagination__button pagination__button_number pagination__page"><%= index + 1 %></button>
+            <button href='#exhibitions=<%= index + 1 %>' data-page="<%= index + 1 %>" class="pagination__button pagination__button_number pagination__page"><%= index + 1 %></button>
           <% } %>
         <% }) %>
         <span class="pagination__ellipsis">...</span>
         <% _.forEach(_.range(countOfPages - 3, countOfPages), (index) => { %>
           <% if(index + 1 === currentPage) { %>
-            <button class="pagination__button pagination__button_number pagination__button_active"><%= index + 1 %></button>
+            <button  href='#exhibitions=<%= index + 1 %>' class="pagination__button pagination__button_number pagination__button_active"><%= index + 1 %></button>
           <% } else { %>
-            <button data-page="<%= index + 1 %>" class="pagination__button pagination__button_number pagination__page"><%= index + 1 %></button>
+            <button  href='#exhibitions=<%= index + 1 %>' data-page="<%= index + 1 %>" class="pagination__button pagination__button_number pagination__page"><%= index + 1 %></button>
           <% } %>
         <% }) %>
         <button class="pagination__button pagination__button_arrow" id="paginationNextButton">Следующая</button>
@@ -191,17 +191,17 @@ class Render {
     return _.template(`
       <div class="pagination">
         <button class="pagination__button pagination__button_arrow" id="paginationPrevButton">Предыдущая</button>
-        <button data-page="1" class="pagination__button pagination__button_number pagination__page">1</button>
+        <button  href='#exhibitions=1' data-page="1" class="pagination__button pagination__button_number pagination__page">1</button>
         <span class="pagination__ellipsis">...</span>
         <% _.forEach(_.range(currentPage-2, currentPage+1), (index) => { %>
           <% if(index + 1 === currentPage) { %>
-            <button class="pagination__button pagination__button_number pagination__button_active"><%= index + 1 %></button>
+            <button  href='#exhibitions=<%= index + 1 %>' class="pagination__button pagination__button_number pagination__button_active"><%= index + 1 %></button>
           <% } else { %>
-            <button data-page="<%= index + 1 %>" class="pagination__button pagination__button_number pagination__page"><%= index + 1 %></button>
+            <button  href='#exhibitions=<%= index + 1 %>' data-page="<%= index + 1 %>" class="pagination__button pagination__button_number pagination__page"><%= index + 1 %></button>
           <% } %>
         <% }) %>
         <span class="pagination__ellipsis">...</span>
-        <button data-page="<%= countOfPages %>" class="pagination__button pagination__button_number pagination__page"><%= countOfPages %></button>
+        <button href='#exhibitions=<%= countOfPages %>' data-page="<%= countOfPages %>" class="pagination__button pagination__button_number pagination__page"><%= countOfPages %></button>
         <button class="pagination__button pagination__button_arrow" id="paginationNextButton">Следующая</button>
       </div>
     `)({ countOfPages, currentPage });
@@ -213,9 +213,9 @@ class Render {
         <button class="pagination__button pagination__button_arrow" id="paginationPrevButton">Предыдущая</button>
         <% _.forEach(_.range(0, countOfPages), (index) => { %>
           <% if(index + 1 === currentPage) { %>
-            <button class="pagination__button pagination__button_number pagination__button_active"><%= index + 1 %></button>
+            <button  href='#exhibitions=<%= index + 1 %>' class="pagination__button pagination__button_number pagination__button_active"><%= index + 1 %></button>
           <% } else { %>
-            <button data-page="<%= index + 1 %>" class="pagination__button pagination__button_number pagination__page"><%= index + 1 %></button>
+            <button href='#exhibitions=<%= index + 1 %>'  data-page="<%= index + 1 %>" class="pagination__button pagination__button_number pagination__page"><%= index + 1 %></button>
           <% } %>
         <% }) %>
         <button class="pagination__button pagination__button_arrow" id="paginationNextButton">Следующая</button>
