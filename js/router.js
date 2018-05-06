@@ -15,16 +15,18 @@ Router.prototype = {
   findNewActiveRoute: function (url) {
     let route = this.routes.find((routeItem) => {
       if (typeof routeItem.match === 'string') {
+        
         return url === routeItem.match;
       } else if (typeof routeItem.match === 'function') {
         return routeItem.match(url);
       } else if (routeItem.match instanceof RegExp) {
         return url.match(routeItem.match);
-      }
+      } 
     });
     return route;
   },
   getRouteParams(route, url) {
+   
     var params = url.match(route.match) || [];
     params.shift();
     return params;
@@ -32,7 +34,12 @@ Router.prototype = {
   handleUrl: function (url) {
     url = url.slice(1);
     let previousRoute = this.findPreviousActiveRoute();
+ 
     let newRoute = this.findNewActiveRoute(url);
+   if(!newRoute) {
+    window.location.hash = "exhibitions=1";
+    return;
+   }
     let routeParams = this.getRouteParams(newRoute, url);
     Promise.resolve()
       .then(() => previousRoute && previousRoute.onLeave && previousRoute.onLeave(...this.currentRouteParams))

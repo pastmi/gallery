@@ -13,21 +13,10 @@ var router = new Router({
       name: "exhibitions",
       match: /exhibitions=(.+)/,
       onEnter: page => {
-        console.log(`onEnter exhibitions:${page}`);
+       
         main.getExhibitions(page);
         main.changeActive("exhibitions", "js-tabulation__buttons");
-      },
-      onLeave: page => console.log(`onLeave exhibitions:${page}`)
-    },
-    {
-      name: "exhibitions/gallery",
-      match: /exhibitions\/gallery=(.+)/,
-      onEnter: page => {
-          let num = page.split(':')
-        main.getGallery(num[1],num[0]);
-      },
-
-      onLeave: page => console.log(`onLeave exhibitions:${page}`)
+      }
     },
     {
       name: "authors",
@@ -35,9 +24,8 @@ var router = new Router({
       onEnter: page => {
         main.getAuthors(page);
         main.changeActive("authors", "js-tabulation__buttons");
-        console.log(`onEnter authors:${page}`);
-      },
-      onLeave: page => console.log(`onLeave authors:${page}`)
+        
+      }
     },
     {
       name: "year",
@@ -45,9 +33,16 @@ var router = new Router({
       onEnter: page => {
         main.getYears();
         main.changeActive("years", "js-tabulation__buttons");
-        console.log(`onEnter years:${page}`);
-      },
-      onLeave: page => console.log(`onLeave years:${page}`)
+       
+      }
+    },
+    {
+      name: "exhibitions/gallery",
+      match: /exhibitions\/gallery=(.+)/,
+      onEnter: page => {
+        let num = page.split(":");
+        main.getGallery(num[1], num[0]);
+      }
     }
   ]
 });
