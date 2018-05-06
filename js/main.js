@@ -121,11 +121,11 @@ export default class Main {
   }
 
   changeActive(target, idGroup) {
-    let elements = document.querySelectorAll("#" + idGroup + " button");
+    let elements = document.querySelectorAll("#" + idGroup + " a");
     elements.forEach(item =>
       item.classList.remove("tabulation__button_active")
     );
-    target.classList.add("tabulation__button_active");
+    document.querySelector('.'+target).classList.add("tabulation__button_active");
    
   }
 

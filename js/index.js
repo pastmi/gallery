@@ -16,27 +16,30 @@ var router = new Router({
       onEnter: page => {
           console.log(`onEnter exhibitions:${page}`);
           main.getExhibitions(1);
+          main.changeActive('exhibitions',"js-tabulation__buttons");
       },
       onLeave: page => console.log(`onLeave exhibitions:${page}`)
     },
     {
-      name: "author",
-      match: /author=(.+)/,
+      name: "authors",
+      match: /authors=(.+)/,
       onEnter: page =>{ 
-           this.getAuthors(1);
-           console.log(`onEnter author:${page}`);
+           main.getAuthors(1);
+           main.changeActive('authors',"js-tabulation__buttons");
+           console.log(`onEnter authors:${page}`);
            
       } ,
-      onLeave: page => console.log(`onLeave author:${page}`)
+      onLeave: page => console.log(`onLeave authors:${page}`)
     },
     {
       name: "year",
-      match: /year=(.+)/,
+      match: /years=(.+)/,
       onEnter: page => { 
-          this.getYears();
-          console.log(`onEnter year:${page}`);
+          main.getYears();
+          main.changeActive('years',"js-tabulation__buttons");
+          console.log(`onEnter years:${page}`);
       },
-      onLeave: page => console.log(`onLeave year:${page}`)
+      onLeave: page => console.log(`onLeave years:${page}`)
     }
   ]
 });

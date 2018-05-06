@@ -12,9 +12,9 @@ class Render {
     let compiled = _.template(`
      <div class="tabulation">
       <div id="js-tabulation__buttons" class="tabulation__list">
-        <button data-section="exhibitions" class="tabulation__button tabulation__button_active">Выставки</button> 
-        <button data-section="authors" class="tabulation__button">Авторы</button> 
-        <button data-section="years" class="tabulation__button">Выставки по годам</button> 
+        <a href='#exhibitions=1' class="exhibitions tabulation__button tabulation__button_active">Выставки</a> 
+        <a href='#authors=1' class="authors tabulation__button">Авторы</a> 
+        <a href='#years=1'class="years tabulation__button">Выставки по годам</a> 
       </div>
       <div id='tabulation__main'>
       
