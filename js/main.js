@@ -6,6 +6,7 @@ export default class Main {
     this.getInformation = this.getInformation.bind(this);
     // this.tabulationListener = this.tabulationListener.bind(this);
     this.start();
+    this.currentImageNumber = 0;
   }
   start() {
     this.addTabulation();
@@ -13,7 +14,7 @@ export default class Main {
 
   addTabulation() {
     render.renderTabulation();
-    
+
     document
       .querySelector("#js-tabulation__buttons")
       .addEventListener("click", this.tabulationListener);
@@ -84,8 +85,6 @@ export default class Main {
     }
   }
 
-  
-
   getInformation(ev) {
     let target = ev.target;
     if (target.tagName !== "P") {
@@ -100,8 +99,9 @@ export default class Main {
     elements.forEach(item =>
       item.classList.remove("tabulation__button_active")
     );
-    document.querySelector('.'+target).classList.add("tabulation__button_active");
-   
+    document
+      .querySelector("." + target)
+      .classList.add("tabulation__button_active");
   }
 
   getPicturesByAuthor(id) {
@@ -169,15 +169,70 @@ export default class Main {
   }
 
   getGallery(id, page) {
-    let countOfPages;
+    let countOfPages, images;
 
     api
       .getPictures(id, page)
       .then(data => data.json())
       .then(pictures => {
+        images = pictures;
         render.renderGallery(pictures.list, page, pictures.count_of_pages);
 
         countOfPages = pictures.count_of_pages;
+      })
+      .then(() => {
+        let pictures = document.getElementsByClassName("js-pictures");
+
+        for (let i = 0; i < pictures.length; i++) {
+          pictures[i].addEventListener(
+            "click",
+            this.getModal.bind(this, images.list, pictures[i].dataset.number)
+          );
+        }
       });
+  }
+
+  getModal(pictures, number) {
+    this.currentImageNumber = number;
+    render.renderModal(pictures, number).then(() => {
+      document
+        .getElementById("js-modal__arrow_right")
+        .addEventListener(
+          "click",
+          this._changeImage.bind(this, "right", pictures, number)
+        );
+      document
+        .getElementById("js-modal__arrow_left")
+        .addEventListener(
+          "click",
+          this._changeImage.bind(this, "left", pictures, number)
+        );
+      document
+        .getElementById("js-moadl__close")
+        .addEventListener("click", () => {
+          document.getElementById("js-modal").remove();
+        });
+    });
+  }
+
+  _changeImage(direction, pictures, number) {
+    if (direction === "left") {
+      if (this.currentImageNumber > 0) {
+        this.currentImageNumber--;
+        this._replaceImage(pictures);
+      }
+    } else if (direction === "right") {
+      if (this.currentImageNumber < pictures.length - 1) {
+        this.currentImageNumber++;
+        this._replaceImage(pictures);
+      }
+    }
+  }
+
+  _replaceImage(pictures) {
+    let imageBlock = document.getElementById("js-modal__image");
+    imageBlock.innerHTML = `<img src="${
+      pictures[this.currentImageNumber].image
+    }" alt="">`;
   }
 }
