@@ -71,15 +71,17 @@ export default class Main {
   }
 
   _nextExhibition(page, countOfPages) {
-    if (page !== countOfPages) {
+    if (page < +countOfPages) {
       page++;
+      window.location.hash = "exhibitions=" + page;
       this.getExhibitions(page);
     }
   }
 
   _prevExhibition(page, countOfPages) {
-    if (page !== 1) {
+    if (page > 1) {
       page--;
+      window.location.hash = "exhibitions=" + page;
       this.getExhibitions(page);
     }
   }
@@ -155,15 +157,19 @@ export default class Main {
   }
 
   _nextAuthors(page, countOfPages) {
-    if (page !== countOfPages) {
+    if (page > +countOfPages) {
       page++;
+      window.location.hash = "authors=" + page;
+    
       this.getAuthors(page);
     }
   }
 
   _prevAuthors(page, countOfPages) {
-    if (page !== 1) {
-      page--;
+    if (page < 1) {
+      page--;authors
+       window.location.hash = "authors=" + page;
+       
       this.getAuthors(page);
     }
   }
