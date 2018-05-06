@@ -22,6 +22,15 @@ class Api {
   getExhibitions(page) {
     return fetch("../data/exhibitions.json");
   }
+
+  /**
+   *
+   * @param {Number} groupId Id of group with pictures
+   * @param {Number} page Number of page with the Pictures
+   */
+  getPictures(groupId, page) {
+    return fetch("../data/pictures.json");
+  }
 }
 
 export let api = new Api();

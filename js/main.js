@@ -191,4 +191,17 @@ export default class Main {
       this.getAuthors(page);
     }
   }
+
+  getGallery(id, page) {
+    let countOfPages;
+
+    api
+      .getPictures(id, page)
+      .then(data => data.json())
+      .then(pictures => {
+        render.renderGallery(pictures.list, page, pictures.count_of_pages);
+
+        countOfPages = pictures.count_of_pages;
+      });
+  }
 }
