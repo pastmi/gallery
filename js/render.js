@@ -12,9 +12,9 @@ class Render {
     let compiled = _.template(`
      <div class="tabulation">
       <div id="js-tabulation__buttons" class="tabulation__list">
-        <button data-section="exhibitions" class="tabulation__button tabulation__button_active">Выставки</button> 
-        <button data-section="authors" class="tabulation__button">Авторы</button> 
-        <button data-section="years" class="tabulation__button">Выставки по годам</button> 
+        <a href='#exhibitions=1' class="exhibitions tabulation__button tabulation__button_active">Выставки</a> 
+        <a href='#authors=1' class="authors tabulation__button">Авторы</a> 
+        <a href='#years=1'class="years tabulation__button">Выставки по годам</a> 
       </div>
       <div id='tabulation__main'>
       
@@ -125,8 +125,9 @@ class Render {
 
     let compiled = _.template(`
       <div class="exhibitions">
+     
         <% _.forEach(data, (item) => { %>
-          <div data-id="<%= item.id %>" class="js-exhibition exhibitions__square">
+          <a href="#exhibitions/gallery=<%=page%>:<%=item.id%>"  data-id="<%= item.id %>" class="js-exhibition exhibitions__square">
             <div class="exhibitions__square-content">
               <div class="exhibitions__image">
                 <img src="<%= item.image %>" alt="">
@@ -136,17 +137,16 @@ class Render {
                 <div class="exhibitions__count-of-pictures"><%= item.count_of_images %> картины</div>
               </div>
             </div>
-          </div>
+          </a >
         <% }) %>
       </div>
-      ${
-        countOfPages > 1
-          ? this._getPaginationTemplate(currentPage, countOfPages)
-          : ""
-      }
+      ${countOfPages > 1 ? this._getPaginationTemplate(currentPage, countOfPages) : ""}
     `);
 
-    tabList.innerHTML = compiled({ data: listOfExhibitions });
+    tabList.innerHTML = compiled({
+      data: listOfExhibitions,
+      page: currentPage
+    });
   }
 
   _getPaginationTemplate(currentPage, countOfPages) {
