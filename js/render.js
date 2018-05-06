@@ -28,9 +28,11 @@ class Render {
     let tabList = document.querySelector("#tabulation__main");
     this.clearBlock(tabList);
     let compiled = _.template(`
-      <div class="year">     
+      <div class="years">     
         <% _.forEach(data, (item) => { %>
-          <p><%= item.name %></p>
+          <h2 class="years__title"><%= item.name %></h2>
+          <hr>
+          <div class="years__information"><%= item.information %></div>
         <% }) %>
       </div>
     `);
@@ -228,13 +230,13 @@ class Render {
     let compiled = _.template(`
       <div class="pictures">
         <% _.forEach(data, (item) => { %>
-          <div class="pictures__square">
+          <a href="#" class="pictures__square">
             <div class="pictures__square-content">
               <div class="pictures__image">
                 <img src="<%= item.preview_image %>" alt="">
               </div>
             </div>
-          </div>
+          </a>
         <% }) %>
       </div>
       ${
