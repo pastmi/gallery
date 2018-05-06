@@ -124,7 +124,7 @@ class Render {
     let compiled = _.template(`
       <div class="exhibitions">
         <% _.forEach(data, (item) => { %>
-          <div class="exhibitions__square">
+          <div data-id="<%= item.id %>" class="js-exhibition exhibitions__square">
             <div class="exhibitions__square-content">
               <div class="exhibitions__image">
                 <img src="<%= item.image %>" alt="">
@@ -219,6 +219,32 @@ class Render {
         <button class="pagination__button pagination__button_arrow" id="paginationNextButton">Следующая</button>
       </div>
     `)({ countOfPages, currentPage });
+  }
+
+  renderGallery(listOfPictures, currentPage, countOfPages) {
+    let tabList = document.querySelector("#tabulation__main");
+    this.clearBlock(tabList);
+
+    let compiled = _.template(`
+      <div class="pictures">
+        <% _.forEach(data, (item) => { %>
+          <div class="pictures__square">
+            <div class="pictures__square-content">
+              <div class="pictures__image">
+                <img src="<%= item.preview_image %>" alt="">
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+      ${
+        countOfPages > 1
+          ? this._getPaginationTemplate(currentPage, countOfPages)
+          : ""
+      }
+    `);
+
+    tabList.innerHTML = compiled({ data: listOfPictures });
   }
 }
 

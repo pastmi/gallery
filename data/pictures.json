@@ -1,0 +1,35 @@
+{
+  "count_of_pages": 1,
+  "list": [
+    {
+      "id": 1,
+      "preview_image": "http://picsum.photos/60/80?2",
+      "image": "http://picsum.photos/800/500?3"
+    },
+    {
+      "id": 2,
+      "preview_image": "http://picsum.photos/80/60?2",
+      "image": "http://picsum.photos/900/420?3"
+    },
+    {
+      "id": 3,
+      "preview_image": "http://picsum.photos/90/70?2",
+      "image": "http://picsum.photos/910/410?3"
+    },
+    {
+      "id": 4,
+      "preview_image": "http://picsum.photos/80/60?2",
+      "image": "http://picsum.photos/920/420?3"
+    },
+    {
+      "id": 5,
+      "preview_image": "http://picsum.photos/90/40?2",
+      "image": "http://picsum.photos/930/430?3"
+    },
+    {
+      "id": 6,
+      "preview_image": "http://picsum.photos/70/50?2",
+      "image": "http://picsum.photos/910/460?3"
+    }
+  ]
+}
