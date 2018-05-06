@@ -4,12 +4,12 @@
     {
       "id": 1,
       "preview_image": "http://picsum.photos/60/80?2",
-      "image": "http://picsum.photos/800/500?3"
+      "image": "http://picsum.photos/60/40?3"
     },
     {
       "id": 2,
       "preview_image": "http://picsum.photos/80/60?2",
-      "image": "http://picsum.photos/900/420?3"
+      "image": "http://picsum.photos/1440/2100?3"
     },
     {
       "id": 3,

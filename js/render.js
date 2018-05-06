@@ -140,7 +140,11 @@ class Render {
           </a >
         <% }) %>
       </div>
-      ${countOfPages > 1 ? this._getPaginationTemplate(currentPage, countOfPages) : ""}
+      ${
+        countOfPages > 1
+          ? this._getPaginationTemplate(currentPage, countOfPages)
+          : ""
+      }
     `);
 
     tabList.innerHTML = compiled({
@@ -229,14 +233,14 @@ class Render {
 
     let compiled = _.template(`
       <div class="pictures">
-        <% _.forEach(data, (item) => { %>
-          <a href="#" class="pictures__square">
+        <% _.forEach(data, (item, index) => { %>
+          <div data-number="<%= index %>" class="js-pictures pictures__square">
             <div class="pictures__square-content">
               <div class="pictures__image">
                 <img src="<%= item.preview_image %>" alt="">
               </div>
             </div>
-          </a>
+          </div>
         <% }) %>
       </div>
       ${
@@ -247,6 +251,34 @@ class Render {
     `);
 
     tabList.innerHTML = compiled({ data: listOfPictures });
+  }
+
+  renderModal(pictures, number) {
+    let tabList = document.querySelector("#tabulation__main");
+
+    let compiled = _.template(`
+      <div id="js-modal" class="modal">
+        <div id="js-modal__arrow_left" class="modal__arrow modal__arrow_left">
+          <-
+        </div>
+        <div id="js-modal__arrow_right" class="modal__arrow modal__arrow_right">
+         ->
+        </div>
+        <div class="modal__content">
+          <div id="js-moadl__close" class="modal__close">X</div>
+          <div id="js-modal__image" class="modal__image">
+            <img src="<%= data.image %>" alt="">
+          </div>
+        </div>
+      </div>
+    `);
+
+    tabList.insertAdjacentHTML(
+      "beforeend",
+      compiled({ data: pictures[number] })
+    );
+
+    return Promise.resolve();
   }
 }
 
