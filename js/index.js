@@ -1,5 +1,7 @@
 import Main from './main';
-import {Router} from './router'
+import {Router} from './router';
+
+let main = new Main();
 
 var router = new Router({
   routes: [
@@ -11,22 +13,32 @@ var router = new Router({
     {
       name: "exhibitions",
       match: /exhibitions=(.+)/,
-      onEnter: page => console.log(`onEnter exhibitions:${page}`),
+      onEnter: page => {
+          console.log(`onEnter exhibitions:${page}`);
+          main.getExhibitions(1);
+      },
       onLeave: page => console.log(`onLeave exhibitions:${page}`)
     },
     {
       name: "author",
       match: /author=(.+)/,
-      onEnter: page => console.log(`onEnter author:${page}`),
+      onEnter: page =>{ 
+           this.getAuthors(1);
+           console.log(`onEnter author:${page}`);
+           
+      } ,
       onLeave: page => console.log(`onLeave author:${page}`)
     },
     {
       name: "year",
       match: /year=(.+)/,
-      onEnter: page => console.log(`onEnter year:${page}`),
+      onEnter: page => { 
+          this.getYears();
+          console.log(`onEnter year:${page}`);
+      },
       onLeave: page => console.log(`onLeave year:${page}`)
     }
   ]
 });
 
-let main = new Main();
+

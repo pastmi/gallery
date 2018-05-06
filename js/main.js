@@ -4,7 +4,7 @@ import { api } from "./api";
 export default class Main {
   constructor() {
     this.getInformation = this.getInformation.bind(this);
-    this.tabulationListener = this.tabulationListener.bind(this);
+    // this.tabulationListener = this.tabulationListener.bind(this);
     this.start();
   }
   start() {
@@ -13,7 +13,7 @@ export default class Main {
 
   addTabulation() {
     render.renderTabulation();
-    this.getExhibitions(1);
+    
     document
       .querySelector("#js-tabulation__buttons")
       .addEventListener("click", this.tabulationListener);
@@ -84,32 +84,32 @@ export default class Main {
     }
   }
 
-  tabulationListener(ev) {
-    let target = ev.target;
+  // tabulationListener(ev) {
+  //   let target = ev.target;
 
-    if (
-      target.tagName !== "BUTTON" ||
-      target.classList.contains("tabulation__button_active")
-    ) {
-      return;
-    }
+  //   if (
+  //     target.tagName !== "BUTTON" ||
+  //     target.classList.contains("tabulation__button_active")
+  //   ) {
+  //     return;
+  //   }
 
-    this.changeActive(target, "js-tabulation__buttons");
+  //   this.changeActive(target, "js-tabulation__buttons");
 
-    switch (target.dataset.section) {
-      case "years":
-        this.getYears();
-        break;
-      case "authors":
-        this.getAuthors(1);
-        break;
-      case "exhibitions":
-        this.getExhibitions(1);
-        break;
-      default:
-        break;
-    }
-  }
+  //   switch (target.dataset.section) {
+  //     case "years":
+  //       this.getYears();
+  //       break;
+  //     case "authors":
+  //       this.getAuthors(1);
+  //       break;
+  //     case "exhibitions":
+  //       this.getExhibitions(1);
+  //       break;
+  //     default:
+  //       break;
+  //   }
+  // }
 
   getInformation(ev) {
     let target = ev.target;
@@ -126,6 +126,7 @@ export default class Main {
       item.classList.remove("tabulation__button_active")
     );
     target.classList.add("tabulation__button_active");
+   
   }
 
   getPicturesByAuthor(id) {
