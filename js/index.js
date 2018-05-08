@@ -29,10 +29,10 @@ var router = new Router({
     },
     {
       name: "year",
-      match: /years=(.+)/,
+      match: /year=(.+)/,
       onEnter: page => {
         main.getYears();
-        main.changeActive("years", "js-tabulation__buttons");
+        main.changeActive("year", "js-tabulation__buttons");
        
       }
     },
