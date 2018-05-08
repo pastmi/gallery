@@ -167,7 +167,7 @@ export default class Main {
 
   _prevAuthors(page, countOfPages) {
     if (page < 1) {
-      page--;authors
+      page--;
        window.location.hash = "authors=" + page;
        
       this.getAuthors(page);
