@@ -43,6 +43,14 @@ var router = new Router({
         let num = page.split(":");
         main.getGallery(num[1], num[0]);
       }
+    },
+     {
+      name: "authors/gallery",
+      match: /authors\/gallery=(.+)/,
+      onEnter: page => {
+        let num = page.split(":");
+        main.getGallery(num[1], num[0]);
+      }
     }
   ]
 });

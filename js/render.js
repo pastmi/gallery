@@ -61,7 +61,8 @@ class Render {
     let compiled = _.template(`
       <div class="authors">
         <% _.forEach(listOfAuthors, (item) => { %>
-          <a href="#" class="authors__square">
+          <a href = "#authors/gallery=<%=currentPage%>:<%=item.id%>"
+          class = "authors__square" >
             <div class="authors__square-content">
               <div class="authors__image">
                 <img src="<%= item.image %>" alt="">
