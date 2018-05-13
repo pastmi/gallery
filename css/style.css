@@ -395,3 +395,36 @@ body {
   justify-content: center;
   cursor: pointer;
 }
+
+@media screen and (max-width: 640px) {
+  .tabulation__list {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .tabulation__button:not(:last-child) {
+    margin-bottom: 10px;
+  }
+  
+  .exhibitions__square,
+  .authors__square,
+  .pictures__square {
+    width: 49%;
+    padding-bottom: 49%;
+  }
+
+  .pagination {
+    flex-direction: column;
+    /* align-items: center; */
+    flex-wrap: wrap;
+  }
+  
+  .pagination__button_number,
+  .pagination__ellipsis {
+    display: none;
+  }
+
+  .pagination__button_arrow {
+    margin-bottom: 10px;
+  }
+}
