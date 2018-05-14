@@ -409,4 +409,19 @@ body {
 .modal__information span{
   color: #ccc;
   margin-right: 20px;
+  .pagination {
+    flex-direction: column;
+    /* align-items: center; */
+    flex-wrap: wrap;
+  }
+  
+  .pagination__button_number,
+  .pagination__ellipsis {
+    display: none;
+  }
+
+  .pagination__button_arrow {
+    margin-bottom: 10px;
+  }
+>>>>>>> fc80cf89fd488e58a27091e08e3506a22df48d75
 }
