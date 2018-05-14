@@ -128,7 +128,6 @@ class Render {
       <div class="exhibitions">
      
         <% _.forEach(data, (item) => { %>
-          <%= item.value %>
           <a href="#exhibitions/gallery=<%=page%>:<%=item.value%>"  data-id="<%= item.id %>" class="js-exhibition exhibitions__square">
             <div class="exhibitions__square-content">
               <div class="exhibitions__image">

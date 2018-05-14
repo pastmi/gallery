@@ -51,7 +51,7 @@ var router = new Router({
       onEnter: page => {
         main.changeActive("authors", "tabulation__main");
         let num = page.split(":");
-        main.getGallery(num[1], num[0]);
+        main.getAuthorsGallery(num[1], num[0]);
       }
     }
   ]

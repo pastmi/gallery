@@ -3,7 +3,7 @@ import { api } from "./api";
 
 export default class Main {
   constructor() {
- 
+
     // this.tabulationListener = this.tabulationListener.bind(this);
     this.start();
     this.currentImageNumber = 0;
@@ -18,7 +18,7 @@ export default class Main {
     document
       .querySelector("#js-tabulation__buttons")
       .addEventListener("click", this.tabulationListener);
-   
+
   }
 
   getYears() {
@@ -35,7 +35,6 @@ export default class Main {
       .then(data => data.json())
       .then(response => response.data)
       .then(exhibitions => {
-        console.log(exhibitions);
         render.renderExhibitions(
           exhibitions.list,
           page,
@@ -86,15 +85,6 @@ export default class Main {
       this.getExhibitions(page);
     }
   }
-
-  // getInformation(ev) {
-  //   let target = ev.target;
-  //   if (target.tagName !== "P") {
-  //     return;
-  //   }
-  //   console.log(target.innerText);
-  //   this.changeActive(target, "tabulation__main");
-  // }
 
   changeActive(target, idGroup) {
     let elements = document.querySelectorAll("#" + idGroup + " a");
@@ -161,7 +151,7 @@ export default class Main {
     if (page > +countOfPages) {
       page++;
       window.location.hash = "authors=" + page;
-    
+
       this.getAuthors(page);
     }
   }
@@ -170,17 +160,41 @@ export default class Main {
     if (page < 1) {
       page--;
        window.location.hash = "authors=" + page;
-       
+
       this.getAuthors(page);
     }
   }
 
   getGallery(id, page) {
-    console.log('xxx', id, page);
     let countOfPages, images;
 
     api
       .getPictures(id, page)
+      .then(data => data.json())
+      .then(resp => resp.data)
+      .then(pictures => {
+        images = pictures;
+        render.renderGallery(pictures.list_of_pictures, page, pictures.count_of_pages);
+
+        countOfPages = pictures.count_of_pages;
+      })
+      .then(() => {
+        let pictures = document.getElementsByClassName("js-pictures");
+
+        for (let i = 0; i < pictures.length; i++) {
+          pictures[i].addEventListener(
+            "click",
+            this.getModal.bind(this, images.list_of_pictures, pictures[i].dataset.number)
+          );
+        }
+      });
+  }
+
+  getAuthorsGallery(id, page) {
+    let countOfPages, images;
+
+    api
+      .getPicturesByAuthor(id, page)
       .then(data => data.json())
       .then(resp => resp.data)
       .then(pictures => {

@@ -49,7 +49,7 @@ class Api {
    * @param {Number} page Number of page with the Pictures
    */
   getPictures(id, page) {
-    return fetch(`http://joomla/index.php?option=com_spsimpleportfolio&task=getJsonAuthorId&format=json&id=${id}`, {
+    return fetch(`http://joomla/index.php?option=com_spsimpleportfolio&task=getJsonPictures&format=json&&id=${id}`, {
       method: 'GET',
       headers: {
         Accept: 'application/json'
