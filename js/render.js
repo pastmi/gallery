@@ -270,6 +270,10 @@ class Render {
           <div id="js-modal__image" class="modal__image">
             <img src="<%= data.image %>" alt="">
           </div>
+          <div class="modal__information">
+            <span><%= data.name %></span>
+            <span><%= data.autor %></span>
+          </div>
         </div>
       </div>
     `);

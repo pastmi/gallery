@@ -388,10 +388,25 @@ body {
   right: 0;
   width: 60px;
   height: 60px;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.4);
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+}
+
+.modal__information {
+  position: absolute;
+  padding: 17px 23px 14px;
+  min-height: 18px;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.modal__information span{
+  color: #ccc;
+  margin-right: 20px;
 }
