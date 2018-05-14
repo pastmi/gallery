@@ -270,10 +270,16 @@ class Render {
           <div id="js-modal__image" class="modal__image">
             <img src="<%= data.image %>" alt="">
           </div>
+          <% if(data.title || data.author) { %>
           <div class="modal__information">
-            <span><%= data.name %></span>
-            <span><%= data.autor %></span>
+            <% if(data.title) { %>
+            <div><b>Название картины:</b> "<%= data.title %>"</div>
+            <% } %>
+            <% if(data.author) { %>
+            <div><b>Автор</b>: <%= data.author %></div>
+            <% } %>
           </div>
+          <% } %>
         </div>
       </div>
     `);
