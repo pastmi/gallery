@@ -51,7 +51,6 @@ body {
   background-color: #000;
   color: #fff;
   border-color: #000;
-  cursor: default;
 }
 
 .authors:after {
@@ -281,6 +280,7 @@ body {
   margin: 0.5%;
   background-color: #1e1e1e;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .pictures__square-content {
@@ -397,18 +397,23 @@ body {
 }
 
 .modal__information {
+  display: flex;
+  flex-direction: column;
   position: absolute;
-  padding: 17px 23px 14px;
-  min-height: 18px;
+  padding: 10px 15px;
   width: 100%;
   bottom: 0;
   left: 0;
   background: rgba(0, 0, 0, 0.4);
 }
 
-.modal__information span{
-  color: #ccc;
-  margin-right: 20px;
+.modal__information div {
+  color: #bbb;
+  font-size: .9em;
+}
+
+.modal__information div:not(:last-child) {
+  margin-bottom: 4px;
 }
 
 @media screen and (max-width: 640px) {
