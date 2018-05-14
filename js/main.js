@@ -102,9 +102,6 @@ export default class Main {
     document
       .querySelector("." + target)
       .classList.add("tabulation__button_active");
-      console.log('====================================');
-      console.log('qwe');
-      console.log('====================================');
   }
 
   getPicturesByAuthor(id) {
