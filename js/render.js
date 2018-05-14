@@ -68,8 +68,7 @@ class Render {
                 <img src="<%= item.image %>" alt="">
               </div>
               <div class="authors__info">
-                <div class="authors__name"><%= item.name %></div>
-                <div class="authors__count-of-pictures"><%= item.count_of_pictures %> картин</div>
+                <div class="authors__name"><%= item.title %></div>
               </div>
             </div>
           </a>
@@ -81,6 +80,7 @@ class Render {
           : ""
       }
     `);
+    // <div class="authors__count-of-pictures"><%= item.count_of_pictures %> картин</div>
 
     tabList.innerHTML = compiled({
       listOfAuthors,
@@ -128,13 +128,14 @@ class Render {
       <div class="exhibitions">
      
         <% _.forEach(data, (item) => { %>
-          <a href="#exhibitions/gallery=<%=page%>:<%=item.id%>"  data-id="<%= item.id %>" class="js-exhibition exhibitions__square">
+          <%= item.value %>
+          <a href="#exhibitions/gallery=<%=page%>:<%=item.value%>"  data-id="<%= item.id %>" class="js-exhibition exhibitions__square">
             <div class="exhibitions__square-content">
               <div class="exhibitions__image">
                 <img src="<%= item.image %>" alt="">
               </div>
               <div class="exhibitions__info">
-                <div class="exhibitions__title"><%= item.name %></div>
+                <div class="exhibitions__title"><%= item.text %></div>
                 <div class="exhibitions__count-of-pictures"><%= item.count_of_images %> картины</div>
               </div>
             </div>
@@ -238,7 +239,7 @@ class Render {
           <div data-number="<%= index %>" class="js-pictures pictures__square">
             <div class="pictures__square-content">
               <div class="pictures__image">
-                <img src="<%= item.preview_image %>" alt="">
+                <img src="<%= item.image %>" alt="">
               </div>
             </div>
           </div>

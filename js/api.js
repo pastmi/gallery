@@ -1,10 +1,20 @@
 class Api {
   getYears() {
-    return fetch("../data/years.json");
+    return fetch("../data/years.json", {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json'
+      }
+    });
   }
 
   getAuthors() {
-    return fetch("../data/authors.json");
+    return fetch("http://joomla/index.php?option=com_spsimpleportfolio&task=getJsonAuthors&format=json", {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json'
+      }
+    });
   }
 
   /**
@@ -12,7 +22,12 @@ class Api {
    * @param {Number} id Id of author
    */
   getPicturesByAuthor(id) {
-    return fetch("../data/authors-id.json");
+    return fetch(`http://joomla/index.php?option=com_spsimpleportfolio&task=getJsonAuthorId&format=json&id=${id}`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json'
+      }
+    });
   }
 
   /**
@@ -20,7 +35,12 @@ class Api {
    * @param {Number} page Number of page with the Exhibitions
    */
   getExhibitions(page) {
-    return fetch("../data/exhibitions.json");
+    return fetch("http://joomla/index.php?option=com_spsimpleportfolio&task=getJsonExhibitions&format=json", {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json'
+      }
+    });
   }
 
   /**
@@ -28,8 +48,13 @@ class Api {
    * @param {Number} groupId Id of group with pictures
    * @param {Number} page Number of page with the Pictures
    */
-  getPictures(groupId, page) {
-    return fetch("../data/pictures.json");
+  getPictures(id, page) {
+    return fetch(`http://joomla/index.php?option=com_spsimpleportfolio&task=getJsonAuthorId&format=json&id=${id}`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json'
+      }
+    });
   }
 }
 

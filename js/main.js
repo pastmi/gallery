@@ -35,7 +35,9 @@ export default class Main {
     api
       .getExhibitions()
       .then(data => data.json())
+      .then(response => response.data)
       .then(exhibitions => {
+        console.log(exhibitions);
         render.renderExhibitions(
           exhibitions.list,
           page,
@@ -124,6 +126,7 @@ export default class Main {
     api
       .getAuthors()
       .then(data => data.json())
+      .then(response => response.data)
       .then(authors => {
         render.renderAuthors(authors.list, page, authors.count_of_pages);
 
@@ -175,14 +178,16 @@ export default class Main {
   }
 
   getGallery(id, page) {
+    console.log('xxx', id, page);
     let countOfPages, images;
 
     api
       .getPictures(id, page)
       .then(data => data.json())
+      .then(resp => resp.data)
       .then(pictures => {
         images = pictures;
-        render.renderGallery(pictures.list, page, pictures.count_of_pages);
+        render.renderGallery(pictures.list_of_pictures, page, pictures.count_of_pages);
 
         countOfPages = pictures.count_of_pages;
       })
@@ -192,7 +197,7 @@ export default class Main {
         for (let i = 0; i < pictures.length; i++) {
           pictures[i].addEventListener(
             "click",
-            this.getModal.bind(this, images.list, pictures[i].dataset.number)
+            this.getModal.bind(this, images.list_of_pictures, pictures[i].dataset.number)
           );
         }
       });
