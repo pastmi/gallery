@@ -1,6 +1,6 @@
 class Api {
   getYears() {
-    return fetch("../data/years.json", {
+    return fetch("http://joomla/index.php?option=com_spsimpleportfolio&task=getJsonYears&format=json", {
       method: 'GET',
       headers: {
         Accept: 'application/json'

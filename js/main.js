@@ -25,6 +25,7 @@ export default class Main {
     api
       .getYears()
       .then(data => data.json())
+      .then(response => response.data)
       .then(years => render.renderAboutTabulation(years));
   }
 
