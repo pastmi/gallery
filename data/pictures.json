@@ -4,32 +4,44 @@
     {
       "id": 1,
       "preview_image": "http://picsum.photos/60/80?2",
-      "image": "http://picsum.photos/60/40?3"
+      "image": "http://picsum.photos/60/40?3",
+      "name":"pastMi",
+      "autor":"Pavel Keizik"
     },
     {
       "id": 2,
       "preview_image": "http://picsum.photos/80/60?2",
-      "image": "http://picsum.photos/1440/2100?3"
+      "image": "http://picsum.photos/1440/2100?3",
+      "name":"pastMi",
+      "autor":"Pavel Keizik"
     },
     {
       "id": 3,
       "preview_image": "http://picsum.photos/90/70?2",
-      "image": "http://picsum.photos/910/410?3"
+      "image": "http://picsum.photos/910/410?3",
+      "name":"pastMi",
+      "autor":"Pavel Keizik"
     },
     {
       "id": 4,
       "preview_image": "http://picsum.photos/80/60?2",
-      "image": "http://picsum.photos/920/420?3"
+      "image": "http://picsum.photos/920/420?3",
+      "name":"pastMi",
+      "autor":"Pavel Keizik"
     },
     {
       "id": 5,
       "preview_image": "http://picsum.photos/90/40?2",
-      "image": "http://picsum.photos/930/430?3"
+      "image": "http://picsum.photos/930/430?3",
+      "name":"pastMi",
+      "autor":"Pavel Keizik"
     },
     {
       "id": 6,
       "preview_image": "http://picsum.photos/70/50?2",
-      "image": "http://picsum.photos/910/460?3"
+      "image": "http://picsum.photos/910/460?3",
+      "name":"pastMi",
+      "autor":"Pavel Keizik"
     }
   ]
 }
