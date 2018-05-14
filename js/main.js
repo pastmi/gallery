@@ -3,7 +3,7 @@ import { api } from "./api";
 
 export default class Main {
   constructor() {
-    this.getInformation = this.getInformation.bind(this);
+ 
     // this.tabulationListener = this.tabulationListener.bind(this);
     this.start();
     this.currentImageNumber = 0;
@@ -18,9 +18,7 @@ export default class Main {
     document
       .querySelector("#js-tabulation__buttons")
       .addEventListener("click", this.tabulationListener);
-    document
-      .querySelector("#tabulation__main")
-      .addEventListener("click", this.getInformation);
+   
   }
 
   getYears() {
@@ -87,14 +85,14 @@ export default class Main {
     }
   }
 
-  getInformation(ev) {
-    let target = ev.target;
-    if (target.tagName !== "P") {
-      return;
-    }
-    console.log(target.innerText);
-    this.changeActive(target, "tabulation__main");
-  }
+  // getInformation(ev) {
+  //   let target = ev.target;
+  //   if (target.tagName !== "P") {
+  //     return;
+  //   }
+  //   console.log(target.innerText);
+  //   this.changeActive(target, "tabulation__main");
+  // }
 
   changeActive(target, idGroup) {
     let elements = document.querySelectorAll("#" + idGroup + " a");
@@ -104,6 +102,9 @@ export default class Main {
     document
       .querySelector("." + target)
       .classList.add("tabulation__button_active");
+      console.log('====================================');
+      console.log('qwe');
+      console.log('====================================');
   }
 
   getPicturesByAuthor(id) {
