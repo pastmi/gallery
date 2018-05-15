@@ -30,9 +30,10 @@ export default class Main {
   }
 
   getExhibitions(page) {
+   
     let countOfPages;
     api
-      .getExhibitions()
+      .getExhibitions(page)
       .then(data => data.json())
       .then(response => response.data)
       .then(exhibitions => {
@@ -43,6 +44,7 @@ export default class Main {
         );
 
         countOfPages = exhibitions.count_of_pages;
+      
       })
       .then(() => {
         if (countOfPages > 1) {
@@ -113,13 +115,14 @@ export default class Main {
   getAuthors(page) {
     let countOfPages;
     api
-      .getAuthors()
+      .getAuthors(page)
       .then(data => data.json())
       .then(response => response.data)
       .then(authors => {
         render.renderAuthors(authors.list, page, authors.count_of_pages);
 
         countOfPages = authors.count_of_pages;
+          
       })
       .then(() => {
         if (countOfPages > 1) {
@@ -149,7 +152,9 @@ export default class Main {
   }
 
   _nextAuthors(page, countOfPages) {
-    if (page > +countOfPages) {
+    
+    if (page < +countOfPages) {
+       
       page++;
       window.location.hash = "authors=" + page;
 
@@ -158,7 +163,9 @@ export default class Main {
   }
 
   _prevAuthors(page, countOfPages) {
-    if (page < 1) {
+  
+    if (page > 1) {
+      
       page--;
        window.location.hash = "authors=" + page;
 

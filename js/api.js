@@ -8,8 +8,8 @@ class Api {
     });
   }
 
-  getAuthors() {
-    return fetch("http://joomla/index.php?option=com_spsimpleportfolio&task=getJsonAuthors&format=json", {
+  getAuthors(page) {
+    return fetch("http://joomla/index.php?option=com_spsimpleportfolio&task=getJsonAuthors&format=json&page=" + page, {
       method: 'GET',
       headers: {
         Accept: 'application/json'
@@ -35,7 +35,7 @@ class Api {
    * @param {Number} page Number of page with the Exhibitions
    */
   getExhibitions(page) {
-    return fetch("http://joomla/index.php?option=com_spsimpleportfolio&task=getJsonExhibitions&format=json", {
+    return fetch("http://joomla/index.php?option=com_spsimpleportfolio&task=getJsonExhibitions&format=json&page=" + page, {
       method: 'GET',
       headers: {
         Accept: 'application/json'
