@@ -62,7 +62,7 @@ export default class Main {
               this._prevExhibition.bind(this, page, countOfPages)
             );
 
-          let pages = document.getElementsByClassName("pagination__page");
+          let pages = document.getElementsByClassName("psu-pagination__page");
           for (let i = 0; i < pages.length; i++) {
             pages[i].addEventListener(
               "click",
@@ -92,11 +92,11 @@ export default class Main {
   changeActive(target, idGroup) {
     let elements = document.querySelectorAll("#" + idGroup + " a");
     elements.forEach(item =>
-      item.classList.remove("tabulation__button_active")
+      item.classList.remove("psu-tabulation__button_active")
     );
     document
       .querySelector("." + target)
-      .classList.add("tabulation__button_active");
+      .classList.add("psu-tabulation__button_active");
   }
 
   getPicturesByAuthor(id) {
@@ -140,7 +140,7 @@ export default class Main {
               this._prevAuthors.bind(this, page, countOfPages)
             );
 
-          let pages = document.getElementsByClassName("pagination__page");
+          let pages = document.getElementsByClassName("psu-pagination__page");
           for (let i = 0; i < pages.length; i++) {
             pages[i].addEventListener(
               "click",
@@ -226,6 +226,7 @@ export default class Main {
   getModal(pictures, number) {
     this.currentImageNumber = number;
     render.renderModal(pictures, number).then(() => {
+      if(pictures.length > 1) {
       document
         .getElementById("js-modal__arrow_right")
         .addEventListener(
@@ -238,6 +239,7 @@ export default class Main {
           "click",
           this._changeImage.bind(this, "left", pictures, number)
         );
+      }
       document
         .getElementById("js-moadl__close")
         .addEventListener("click", () => {

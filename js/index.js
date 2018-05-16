@@ -40,7 +40,7 @@ var router = new Router({
       name: "exhibitions/gallery",
       match: /exhibitions\/gallery=(.+)/,
       onEnter: page => {
-        main.changeActive("exhibitions", "tabulation__main");
+        main.changeActive("exhibitions", "psu-tabulation__main");
         let num = page.split(":");
         main.getGallery(num[1], num[0]);
       }
@@ -49,7 +49,7 @@ var router = new Router({
       name: "authors/gallery",
       match: /authors\/gallery=(.+)/,
       onEnter: page => {
-        main.changeActive("authors", "tabulation__main");
+        main.changeActive("authors", "psu-tabulation__main");
         let num = page.split(":");
         main.getAuthorsGallery(num[1], num[0]);
       }
