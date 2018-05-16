@@ -120,8 +120,24 @@ class Render {
    * @param {Number} currentPage
    * @param {Number} counfOfPages
    */
+
+  getPicture(num) {
+    if ((num % 10) === 1) {
+      return "картина";
+    }
+    if (num > 10 && num < 20) {
+      return "картин";
+    }
+    if ((num % 10) > 1  && (num % 10) < 5) {
+      return "картины";
+    }
+    if ((num % 10) > 5  && (num % 10) < 9 || (num % 10) === 0) {
+      return "картин";
+    }
+  }
+
   renderExhibitions(listOfExhibitions, currentPage, countOfPages) {
-    let tabList = document.querySelector("#tabulation__main");
+    let tabList = document.querySelector("#tabulation__main")
     this.clearBlock(tabList);
 
     let compiled = _.template(`
@@ -135,7 +151,9 @@ class Render {
               </div>
               <div class="psu-exhibitions__info">
                 <div class="psu-exhibitions__title"><%= item.text %></div>
-                <div class="psu-exhibitions__count-of-pictures"><%= item.count_of_images %> картины</div>
+                <div class = "psu-exhibitions__count-of-pictures" > <%= item.count_of_images %>
+                <%= getPicture(item.count_of_images)  %>
+                 </div>
               </div>
             </div>
           </a >
@@ -150,7 +168,8 @@ class Render {
 
     tabList.innerHTML = compiled({
       data: listOfExhibitions,
-      page: currentPage
+      page: currentPage,
+      getPicture: this.getPicture
     });
   }
 
