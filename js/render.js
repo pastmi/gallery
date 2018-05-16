@@ -277,10 +277,10 @@ class Render {
           <% if(data.title || data.nameAuthor) { %>
           <div class="psu-modal__information">
             <% if(data.title) { %>
-            <div><b>Название картины:</b> "<%= data.title %>"</div>
+            <div><b>Название картины:</b> "<span class="psu-img-title"><%= data.title %></span>"</div>
             <% } %>
             <% if(data.nameAuthor) { %>
-            <div><b>Автор</b>: <%= data.nameAuthor %></div>
+            <div><b>Автор</b>:<span class="psu-img-author"> <%= data.nameAuthor %></span></div>
             <% } %>
           </div>
           <% } %>

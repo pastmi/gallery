@@ -263,9 +263,13 @@ export default class Main {
   }
 
   _replaceImage(pictures) {
-    let imageBlock = document.getElementById("js-modal__image");
+    let imageBlock = document.getElementById("js-modal__image"),
+    title = document.querySelector('.psu-img-title'),
+    author = document.querySelector('.psu-img-author');
     imageBlock.innerHTML = `<img src="${
       pictures[this.currentImageNumber].image
     }" alt="">`;
+    title.innerHTML =    pictures[this.currentImageNumber].title;
+    author.innerHTML =    pictures[this.currentImageNumber].nameAuthor;
   }
 }
